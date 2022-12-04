@@ -1,6 +1,6 @@
 <template>
   <div>
-    <canvas id="newtonChart"></canvas>
+    <canvas id="newtonChart" width="500" height="250"></canvas>
   </div>
 </template>
 
@@ -109,6 +109,7 @@ export default {
         },
       })
       this.chart.data.datasets = templates
+      this.chart.update()
     },
     addToDataSet(template) {
       this.chart.data.datasets.push(template)

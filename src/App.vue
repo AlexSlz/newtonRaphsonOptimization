@@ -155,6 +155,7 @@ export default {
         )
       } else if (this.mathTypeSelect == 'Root Finder') {
         let xValue = this.myFunction.xList.map((item) => item.value)
+
         if (funcText.length == 1) {
           tempResult = method.CalculateMethodSingle(xValue[0], funcText[0])
         } else if (funcText.length > 1) {

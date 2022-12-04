@@ -1,12 +1,14 @@
 <template>
-  <div v-if="mathTypeSelect == 'Root Finder'">
-    <textarea v-model="myFunction.funcText" @input="findX()"></textarea>
-    <RootFinding :xList="myFunction.xList" />
-  </div>
+  <div>
+    <div v-if="mathTypeSelect == 'Root Finder'">
+      <textarea v-model="myFunction.funcText" @input="findX()"></textarea>
+      <RootFinding :xList="myFunction.xList" />
+    </div>
 
-  <div v-else-if="mathTypeSelect == 'Optimization'">
-    <input v-model="myFunction.funcText" @input="findX()" />
-    <Optimization :funcRange="myFunction.funcRange" />
+    <div v-else-if="mathTypeSelect == 'Optimization'">
+      <input v-model="myFunction.funcText" @input="findX()" />
+      <Optimization :funcRange="myFunction.funcRange" />
+    </div>
   </div>
 </template>
 
@@ -39,11 +41,17 @@ export default {
           '(?<![a-zA-Z])[a-zA-Z](?![a-zA-Z])'
         ),
       ]
+      let funcLength = this.myFunction.funcText
+        .split('\n')
+        .filter((element) => element !== '').length
       result = [...new Set(result.map((item) => item[0]))]
-      this.myFunction.xList = result.map((item) => {
+      this.myFunction.xList = result.map((item, index) => {
         let temp = this.myFunction.xList.find((x) => x.name == item[0])
         let tempValue = temp?.value === undefined ? 1 : temp.value
-        return { name: item[0], value: tempValue }
+        return {
+          name: item[0],
+          value: tempValue,
+        }
       })
     },
   },

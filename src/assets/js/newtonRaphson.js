@@ -73,7 +73,6 @@ export class newtonRaphson {
         return { result: temp, dFunc: tempDf }
     }
 
-
     CalculateMethodSingle(startX, func) {
         let temp = []
         temp[this.xName[0]] = startX
@@ -88,6 +87,7 @@ export class newtonRaphson {
         let err = 1
         let iter = 0
         while (err > this.delta && iter < this.maxIteration) {
+            console.log(x0)
             x1 = x0 - funcManipulation.CalculateFunction(func, x0, this.xName) / funcManipulation.CalculateFunction(dFunc, x0, this.xName)
             x1 = round(x1, this.decimal)
 
